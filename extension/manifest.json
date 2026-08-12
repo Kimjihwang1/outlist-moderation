@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube 댓글 유해 모더레이션",
+  "version": "0.1.0",
+  "description": "유튜브 댓글을 수집해 유해성을 판정하고, 유해 댓글을 블러 처리합니다. 사이드 패널에서 통계를 확인할 수 있습니다.",
+
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "http://localhost:8000/*",
+    "http://127.0.0.1:8000/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+
+  "action": {
+    "default_title": "댓글 모더레이션 패널 열기"
+  }
+}

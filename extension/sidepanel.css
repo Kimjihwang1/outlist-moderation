@@ -1,0 +1,75 @@
+/*
+ * sidepanel.css
+ * -------------
+ * 사이드 패널 스타일. 크롬 다크/라이트 테마를 모두 따라가도록 CSS 변수로 정의한다.
+ */
+
+:root {
+  --bg: #ffffff;
+  --fg: #1f1f1f;
+  --muted: #5f6368;
+  --line: #e0e0e0;
+  --card: #f5f6f7;
+  --danger: #d93025;
+  --ok: #1e8e3e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1f1f1f;
+    --fg: #e8eaed;
+    --muted: #9aa0a6;
+    --line: #3c4043;
+    --card: #2a2b2d;
+    --danger: #f28b82;
+    --ok: #81c995;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 12px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.5 system-ui, "Segoe UI", "Malgun Gothic", sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+h1 { margin: 0; font-size: 14px; }
+h2 { margin: 0 0 6px; font-size: 12px; color: var(--muted); font-weight: 600; }
+
+.health { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.dot.ok { background: var(--ok); }
+.dot.bad { background: var(--danger); }
+
+.summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 12px 0; }
+
+.card { padding: 10px 6px; border-radius: 8px; background: var(--card); text-align: center; }
+.card__value { font-size: 20px; font-weight: 700; }
+.card__label { margin-top: 2px; font-size: 11px; color: var(--muted); }
+.card--danger .card__value { color: var(--danger); }
+
+.section { margin-bottom: 16px; }
+
+.cats { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.cat { display: grid; grid-template-columns: 64px 1fr 28px; align-items: center; gap: 8px; font-size: 12px; }
+.cat__bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.cat__fill { height: 100%; width: 0; background: var(--danger); transition: width 0.2s ease; }
+.cat__count { text-align: right; color: var(--muted); }
+
+.row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 12px; }
+.row--col { flex-direction: column; align-items: stretch; gap: 4px; }
+.row input[type="range"] { width: 100%; }
+
+.footer { padding-top: 8px; border-top: 1px solid var(--line); font-size: 11px; color: var(--muted); }

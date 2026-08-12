@@ -1,0 +1,21 @@
+# .venv 에 실제로 설치된 버전 기준 (Python 3.13.10 / Windows)
+# 설치: .venv\Scripts\activate  &&  pip install -r requirements.txt
+
+# --- 웹 서버 ---
+fastapi==0.141.1
+uvicorn==0.52.1
+pydantic==2.13.4
+
+# --- 판정 모델 (smilegate-ai/kor_unsmile) ---
+# torch 는 CPU 전용 휠로 설치하면 용량이 훨씬 작다(CUDA 미포함).
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+# 위 명령으로 먼저 설치한 뒤 이 파일을 적용하면 GPU 휠 재다운로드를 피할 수 있다.
+torch==2.13.0
+transformers==5.15.0
+
+# 모델 가중치(약 500MB)는 최초 실행 시 HuggingFace 에서 자동 다운로드되어
+# C:\Users\<사용자>\.cache\huggingface 에 캐시된다.
+
+# TODO: 외부 탐지 API 를 추가로 붙일 경우
+# httpx==0.28.1
+# python-dotenv==1.1.1

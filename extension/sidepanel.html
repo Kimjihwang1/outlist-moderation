@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+  sidepanel.html
+  --------------
+  사이드 패널 마크업. 실제 값 채우기는 sidepanel.js 가 담당한다.
+  구성: 백엔드 연결 상태 / 총·유해 댓글 수 / 카테고리별 집계 / 임계값 슬라이더
+-->
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>댓글 모더레이션</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>댓글 모더레이션</h1>
+      <div class="health" id="health"><span class="dot" id="health-dot"></span><span id="health-text">확인 중…</span></div>
+    </header>
+
+    <section class="summary">
+      <div class="card">
+        <div class="card__value" id="total">0</div>
+        <div class="card__label">수집된 댓글</div>
+      </div>
+      <div class="card card--danger">
+        <div class="card__value" id="harmful">0</div>
+        <div class="card__label">유해 판정</div>
+      </div>
+      <div class="card">
+        <div class="card__value" id="ratio">0%</div>
+        <div class="card__label">유해 비율</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>카테고리별</h2>
+      <ul class="cats" id="cats"><!-- sidepanel.js 가 채움 --></ul>
+    </section>
+
+    <section class="section">
+      <h2>설정</h2>
+      <label class="row">
+        <input type="checkbox" id="enabled" checked />
+        <span>블러 처리 사용</span>
+      </label>
+      <label class="row row--col">
+        <span>블러 임계값 (유해도 <b id="threshold-value">50</b> 이상)</span>
+        <input type="range" id="threshold" min="0" max="100" step="5" value="50" />
+      </label>
+    </section>
+
+    <footer class="footer" id="footer">유튜브 영상 페이지에서 댓글을 스크롤하면 집계됩니다.</footer>
+
+    <script src="sidepanel.js"></script>
+  </body>
+</html>
